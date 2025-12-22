@@ -1,0 +1,43 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Screenshots (optional - can commit or ignore)
+screenshots/*.png
+
+# Test reports
+reports/
+*.html
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Test data (temporary files)
+test_data/*.txt
+test_data/*.csv
+test_data/*.json
+!test_data/.gitkeep
+
+# Pytest cache
+.pytest_cache/
+.coverage
+htmlcov/
