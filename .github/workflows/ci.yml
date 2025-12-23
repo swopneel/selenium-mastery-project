@@ -40,7 +40,7 @@ jobs:
       continue-on-error: true
     
     - name: 📊 Upload test report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: test-report
@@ -48,7 +48,7 @@ jobs:
         retention-days: 30
     
     - name: 📸 Upload screenshots
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: screenshots
