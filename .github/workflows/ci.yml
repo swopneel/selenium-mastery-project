@@ -1,0 +1,56 @@
+name: Selenium Tests CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        python-version: ['3.9']
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v3
+    
+    - name: 🐍 Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: 🔧 Install Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+    
+    - name: 📦 Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: 🧪 Run pytest with smoke tests
+      run: |
+        pytest -v -m smoke --html=reports/report.html --self-contained-html
+      continue-on-error: true
+    
+    - name: 📊 Upload test report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-report
+        path: reports/report.html
+        retention-days: 30
+    
+    - name: 📸 Upload screenshots
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: screenshots
+        path: screenshots/
+        retention-days: 30
