@@ -1,11 +1,5 @@
-# Simple Requirements - Just What You Need to Start!
-
-# Selenium WebDriver
 selenium==4.16.0
-
-# pytest for running tests
 pytest==7.4.3
 pytest-html==4.1.1
-
-# For better test output
+pytest-xdist==3.5.0
 colorama==0.4.6
